@@ -1,8 +1,8 @@
 import Battle from './Battle';
-import Fighter from '../Fighter';
+import Character from '../Character';
 
 export default class PVP extends Battle {
-  constructor(player1: Fighter, protected _player2: Fighter) {
+  constructor(protected player1: Character, protected _player2: Character) {
     super(player1);
   }
 
@@ -11,6 +11,12 @@ export default class PVP extends Battle {
       this.player.attack(this._player2);
       this._player2.attack(this.player);
     }
+    if (this.player.lifePoints !== -1) {
+      console.log(`${this.player1.name} ganhou do ${this._player2.name}.`);
+    } else {
+      console.log(`${this._player2.name} ganhou do ${this.player1.name}`);
+    }
+
     return super.fight();
   }
 }
